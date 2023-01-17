@@ -1,0 +1,34 @@
+.fullContainer {
+  width:90%;
+  display: flex;
+}
+
+.halfContainer {
+  width: 50%;
+  display: flex;
+}
+
+.thirdContainer {
+  width: 30%;
+  display: flex;
+}
+
+.twoThirdContainer {
+  width: 60%;
+  display: flex;
+}
+
+.quaterContainer {
+  width: 25%;
+  display: flex;
+}
+
+.threeQuaterContainer {
+  width: 75%;
+  display: flex;
+}
+
+.flexCol {
+  flex-direction: column;
+  align-items: center;
+}

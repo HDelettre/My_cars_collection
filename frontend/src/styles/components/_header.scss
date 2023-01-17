@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  width:95%;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4px solid $colors_second;
+  margin-top: $margin_xs;
+  margin-bottom: $margin_xl;
+  padding: $margin_s;
+  background-color: $colors_white;
+
+  &_logo {
+    width:15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $colors_white;
+    
+    img {
+      width: 90%;
+      background-color: $colors_white;
+    }
+  }
+
+  &_title {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $colors_first;
+    background-color: $colors_white;
+    
+    h1 {
+      font-family: $fontstyle_h1;
+      font-size: $font_xxl;
+      background-color: $colors_white;
+    }
+  }
+}
+
+.footerContainer {
+  width: 95%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: $margin_xl;
+  margin-bottom: $margin_m;
+  border-top: 3px solid $colors_second;
+  background-color: $colors_fourth;
+
+  ul, li, h3 {
+    background-color: $colors_fourth;
+  }
+}

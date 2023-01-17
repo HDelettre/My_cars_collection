@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  font-family: $fontstyle_std;
+  background-color: $colors_white;
+  font-size: $font_m;
+}
+
+body {
+  max-width: 1250px;  
+}
+
+#root {
+  color: $colors_first;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
