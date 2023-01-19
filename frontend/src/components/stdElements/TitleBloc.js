@@ -1,9 +1,9 @@
 import React from 'react';
 
-const TitleBloc = () => {
+const TitleBloc = ({title}) => {
   return (
-    <div>
-      TITLE BLOC
+    <div className='titleBloc'>
+      {title}
     </div>
   );
 }

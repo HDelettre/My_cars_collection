@@ -7,20 +7,26 @@ require("dotenv").config({
 });
 
 // PATH TO ROUTES
-//const authRoutes = require("./Routes/users");
+const carsRoutes = require("./collection/collection.routes");
 
 // MYSQL / SEQUELIZE
-const sequelize = require("./Config/databaseAccess");
+const sequelize = require("./config/databaseAccess");
 // Synchronization of models
-//require("./Models/user.model");
+// const carsModel = require("./collection/collection.models");
+// carsModel.sync({alter: true});
+require("./collection/collection.models");
 sequelize.sync({ alter: true });
 
 // HELMET
 const helmet = require("helmet");
 
+
 const app = express();
-app.use(helmet);
-app.use("/Pictures", express.static(__dirname + "/Pictures"));
+
+const cors = require("cors");
+app.use(cors());
+
+app.use("/pictures", express.static(__dirname + "/pictures"));
 
 // CORS
 app.use((req, res, next) => {
@@ -28,18 +34,19 @@ app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  next();
-});
-
+    );
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+      );
+      next();
+    });
+    
+    app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(express.json());
 
 // ROUTES CALLING
-//app.use("/api/auth", authRoutes);
+app.use("/api/cars", carsRoutes);
 
 // EXPORTS
 module.exports = app;

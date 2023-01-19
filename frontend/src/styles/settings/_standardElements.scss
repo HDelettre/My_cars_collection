@@ -1,4 +1,11 @@
 .titleBloc {
+  width: 80%;
+  align-self: flex-start;
+  border-bottom: 4px solid $colors_third;
+  border-left: 4px solid $colors_third;
+  border-bottom-left-radius: $radius_m;
+  padding: $margin_s;
+  margin: $margin_l;
   font-size: $font_xl;
 }
 
@@ -8,12 +15,33 @@
 
 .navbar {
   width: 90%;
-  background-color: $colors_fourth;
+  border-bottom: 3px solid $colors_first;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .navButton {
-  background-color: $colors_third;
-  color: $colors_fifth;
+  width: 120px;
+  height: 30px;
+  cursor: pointer;
+  text-align: center;
+  padding: $margin_s;
+  margin: $margin_xs;
+  box-sizing: border-box;
+  position: relative;
+  font-weight: 500;
+  
+  &:hover {
+    &::after {
+      content: "";
+      width: 60px;
+      height: 3px;
+      background-color: orange;
+      position: absolute;
+      left: 30px;
+      top:27px;
+    }
+  }
 }
 
 .navicon {

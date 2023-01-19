@@ -21,6 +21,7 @@ body {
 .fullContainer {
   width: 90%;
   display: flex;
+  justify-content: center;
 }
 
 .halfContainer {
@@ -54,6 +55,13 @@ body {
 }
 
 .titleBloc {
+  width: 80%;
+  align-self: flex-start;
+  border-bottom: 4px solid red;
+  border-left: 4px solid red;
+  border-bottom-left-radius: 12px;
+  padding: 8px;
+  margin: 20px;
   font-size: 22px;
 }
 
@@ -63,18 +71,85 @@ body {
 
 .navbar {
   width: 90%;
-  background-color: #c8c8c8;
+  border-bottom: 3px solid #003580;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .navButton {
-  background-color: red;
-  color: yellow;
+  width: 120px;
+  height: 30px;
+  cursor: pointer;
+  text-align: center;
+  padding: 8px;
+  margin: 5px;
+  box-sizing: border-box;
+  position: relative;
+  font-weight: 500;
+}
+.navButton:hover::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background-color: orange;
+  position: absolute;
+  left: 30px;
+  top: 27px;
 }
 
 .navicon {
   font-size: 22px;
 }
 
+.spinloader {
+  cursor: progress;
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+.spinloader::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10001;
+  overflow: hidden;
+  opacity: 1;
+}
+.spinloader::after {
+  box-sizing: border-box;
+  z-index: 10002;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  border: 3px solid #c2baba;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: custom-loading 1s linear infinite;
+          animation: custom-loading 1s linear infinite;
+}
+
+@-webkit-keyframes custom-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes custom-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .header {
   display: flex;
   width: 95%;
@@ -122,4 +197,32 @@ body {
 }
 .footerContainer ul, .footerContainer li, .footerContainer h3 {
   background-color: #c8c8c8;
+}
+
+.homeContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.homeContainer h3 {
+  position: relative;
+}
+.homeContainer h3::before {
+  content: "";
+  background-color: red;
+  width: 80px;
+  height: 3px;
+  position: absolute;
+  left: 30%;
+  top: 23px;
+}
+.homeContainer .image {
+  width: 90%;
+}
+.homeContainer .image img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=styles.css.map */
