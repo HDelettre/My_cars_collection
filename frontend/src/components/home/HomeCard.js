@@ -1,6 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HomeCard = ({data}) => {
+  const navigate = useNavigate();
+  
+  const navigationHandle = (e) => {
+    navigate(`/${e.target.id}`);
+  };
 
   return (
     <div className="homeContainer">
@@ -8,9 +14,8 @@ const HomeCard = ({data}) => {
         <img
         crossOrigin="anonymous"
         src={`${process.env.REACT_APP_PICTURES}/assets/${data.imageUrl}`}
-
-        alt=""
-        
+        alt={data.title}
+        onClick={navigationHandle}
         id={data.section}
       />
       </div>

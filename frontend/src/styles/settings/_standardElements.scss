@@ -18,6 +18,7 @@
   border-bottom: 3px solid $colors_first;
   display: flex;
   justify-content: flex-end;
+  margin-bottom: $margin_l;
 }
 
 .navButton {
@@ -46,4 +47,28 @@
 
 .navicon {
   font-size: $font_xl;
+  cursor: pointer;
+}
+
+.center  {
+  align-items: center;
+}
+
+.validButton, .noValidButton {
+  cursor: pointer;
+  background-color: $colors_second;
+  color: $colors_white;
+  padding: $margin_sm;
+  border-radius: $radius_s;
+  text-align: center;
+  min-width: 120px;
+  margin: $margin_l;
+
+  &:hover {
+    background-color: $colors_first;
+  }
+}
+
+.noValidButton {
+  background-color: $colors_third;
 }

@@ -4,7 +4,6 @@ require("dotenv").config({
 });
 
 const { Sequelize } = require("sequelize");
-const carsModel = require ("../collection/collection.models");
 
 const sequelize = new Sequelize(
   process.env.DATABASE_NAME,
@@ -20,7 +19,6 @@ const sequelize = new Sequelize(
   try {
     await sequelize.authenticate();
     console.log("Connexion à MySQL réussie !");
-    //await carsModel.sync({alter: true})
   } catch (error) {
     console.log("Echec de connexion ! ", error);
   }

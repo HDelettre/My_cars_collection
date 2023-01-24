@@ -6,8 +6,11 @@ require("dotenv").config({
   path: "./config/.env",
 });
 
+const multer = require("./config/multer");
+
 // PATH TO ROUTES
 const carsRoutes = require("./collection/collection.routes");
+const picturesRoutes = require ("./collection/pictures.routes");
 
 // MYSQL / SEQUELIZE
 const sequelize = require("./config/databaseAccess");
@@ -15,11 +18,11 @@ const sequelize = require("./config/databaseAccess");
 // const carsModel = require("./collection/collection.models");
 // carsModel.sync({alter: true});
 require("./collection/collection.models");
+require("./collection/pictures.model");
 sequelize.sync({ alter: true });
 
 // HELMET
 const helmet = require("helmet");
-
 
 const app = express();
 
@@ -47,6 +50,7 @@ app.use(express.json());
 
 // ROUTES CALLING
 app.use("/api/cars", carsRoutes);
+app.use("/api/cars", picturesRoutes);
 
 // EXPORTS
 module.exports = app;

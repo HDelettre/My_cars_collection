@@ -1,0 +1,25 @@
+.login_form {
+  width: 80%;
+  min-height: 370px;
+  margin: $margin_xl;
+  border: 2px solid $colors_first;
+  border-radius: $radius_m;
+  background-color: $colors_white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $margin_l;
+
+  &--input {
+    margin: $margin_l;
+    border: 1px solid $colors_second;
+    padding: $margin_s;
+  }
+
+  &--error {
+    color: $colors_third;
+    text-align: center;
+    margin: $margin_ml;
+  }
+}

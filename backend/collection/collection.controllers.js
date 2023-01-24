@@ -33,3 +33,26 @@ exports.createCar = (req, res) => {
     }
   })();
 }
+
+//
+// GET BY SEASONS
+//
+exports.getBySeason = (req,res) => {
+  (async () => {
+    try {
+      const reponse = await carsModel.findAll({
+        where: {year: parseInt(req.params.id)}
+      });
+      return res.status(200).send({reponse});
+    } catch (error) {
+      return res.status(404).json({message: "NON TROUVE"}, error)
+    }
+  })();
+};
+
+
+
+exports.getByTeam = (req,res) => {};
+exports.getBydriver = (req,res) => {};
+exports.updateCar = (req,res) => {};
+exports.deleteCar = (req,res) => {};

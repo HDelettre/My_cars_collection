@@ -1,0 +1,17 @@
+.seasonBox {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &_button {
+    background-color: $colors_fourth;
+    border:2px solid $colors_second;
+    padding: $margin_s $margin_m;
+    margin: $margin_s;
+    border-radius: $radius_s;
+    min-width: 70px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
