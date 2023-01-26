@@ -17,7 +17,6 @@ const HomeModelCard = ({ data }) => {
         });
         if (reponse.ok) {
           const reponseJSON = await reponse.json();
-          console.log("PICTURE: ", reponseJSON)
           setImageName(reponseJSON.reponse.pictureName);
           setImageValid(true);
         } else {

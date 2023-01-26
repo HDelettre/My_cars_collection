@@ -1,22 +1,21 @@
 import React from "react";
 
 const SeasonsButton = ({ setSeasonSelect }) => {
-  const seasonHandle = (e) => {
-    setSeasonSelect(e.target.id);
+  
+  const yearHandle = (e) => {
+    setSeasonSelect(e.target.id)
   };
 
-  let seasonList = [];
-  for (let i = 1950; i < 2023; i++) {
-    seasonList.push(
-      <div className="seasonBox_button" key={i} id={i} onClick={seasonHandle}>
-        {i}
-      </div>
-    );
-  }
+  let yearList = [];
+  for (let i = 1950; i < 2022; i++) {
+    yearList.push(<div className="seasonBox_button" key={i} id={i} onClick={yearHandle}>{i}</div>);
+  };
 
-  return <div className="seasonBox">
-    {seasonList}
-  </div>;
+  return (
+    <div className='seasonBox'>
+      {yearList}
+    </div>
+  );
 };
 
 export default SeasonsButton;

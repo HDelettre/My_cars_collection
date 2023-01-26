@@ -41,7 +41,7 @@ exports.getBySeason = (req,res) => {
   (async () => {
     try {
       const reponse = await carsModel.findAll({
-        where: {year: parseInt(req.params.id)}
+        where: {year: req.params.id}
       });
       return res.status(200).send({reponse});
     } catch (error) {
@@ -50,8 +50,7 @@ exports.getBySeason = (req,res) => {
   })();
 };
 
-
-
+//
 exports.getByTeam = (req,res) => {};
 exports.getBydriver = (req,res) => {};
 exports.updateCar = (req,res) => {};

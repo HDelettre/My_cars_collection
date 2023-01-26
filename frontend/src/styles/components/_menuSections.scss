@@ -15,3 +15,24 @@
     cursor: pointer;
   }
 }
+
+.teamsBox {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  &_card {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $margin_m;
+    cursor: pointer;
+
+    img {
+      object-fit: cover;
+      width: 90%;
+      margin: $margin_s;
+    }
+  }
+}

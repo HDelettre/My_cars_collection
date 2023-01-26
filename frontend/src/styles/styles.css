@@ -74,6 +74,7 @@ body {
   border-bottom: 3px solid #003580;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -123,6 +124,11 @@ body {
 
 .noValidButton {
   background-color: red;
+}
+
+.messageError {
+  color: red;
+  font-size: 22px;
 }
 
 .spinloader {
@@ -378,4 +384,24 @@ body {
   min-width: 70px;
   text-align: center;
   cursor: pointer;
+}
+
+.teamsBox {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.teamsBox_card {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 14px;
+  cursor: pointer;
+}
+.teamsBox_card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 90%;
+  margin: 8px;
 }/*# sourceMappingURL=styles.css.map */
