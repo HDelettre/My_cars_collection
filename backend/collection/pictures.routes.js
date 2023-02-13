@@ -9,11 +9,11 @@ const picturesCtrl = require("./pictures.controllers");
 //
 // ROUTES
 //
-router.post('/pict', multer, picturesCtrl.savePicture);
-router.get('/pict', picturesCtrl.getAllPictures);
-router.get('/pict/:id', picturesCtrl.getOnePicture);
-router.patch("/pict/:id", picturesCtrl.updatePicture);
-router.delete("/pict/:id", picturesCtrl.deletePicture);
+router.post('/', multer, picturesCtrl.savePicture);
+router.get("/", picturesCtrl.getAllPictures);
+router.get('/:id', picturesCtrl.getOnePicture);
+router.patch("/:id", picturesCtrl.updatePicture);
+router.delete("/:id", picturesCtrl.deletePicture);
 
 //
 // EXPORTS

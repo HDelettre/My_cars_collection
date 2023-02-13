@@ -14,6 +14,7 @@ router.get('/season/:id', carsCtrl.getBySeason);
 router.get('team/:id', carsCtrl.getByTeam);
 router.get("/driver/:id", carsCtrl.getBydriver);
 router.patch("/:id", carsCtrl.updateCar);
+router.patch("/result/:id", carsCtrl.updateResultCar);
 router.delete("/:id", carsCtrl.deleteCar);
 
 //

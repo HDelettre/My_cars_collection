@@ -12,11 +12,25 @@ const CreateModelInput = ({
   setSeason,
   season,
   setDriver,
+  driver,
   setRace,
+  race,
   setManufacturer,
   setReference,
   setStatusModel,
-  setSaveTheModel
+  setSaveTheModel,
+  setQpos,
+  qpos,
+  setQtime,
+  qtime,
+  setRpos,
+  rpos,
+  setRtime,
+  rtime,
+  setBLpos,
+  blpos,
+  setBLtime,
+  bltime,
 }) => {
   const [optionStep, setOptionStep] = useState(0);
   const [dataSeason, setDataSeason] = useState();
@@ -39,26 +53,22 @@ const CreateModelInput = ({
         setCarsList(
           dataSeason.cars.sort((a, b) => (a.model > b.model ? 1 : -1))
         );
-      }
-      if (optionStep === 2) {
+      } else if (optionStep === 2) {
         setRacesList(dataSeason.calendar);
-        setRace("No Race");
         setCheckValid(true);
-      }
-      if (optionStep === 3) {
+      } else if (optionStep === 3) {
+        setCheckValid(true);
+      } else if (optionStep === 4) {
         setManufacturersList(dataCollection[0].manufacturer);
-        setManufacturer("No Manufacturer");
-        setReference('No Reference');
         setCheckValid(true);
-      }
-      if (optionStep === 4) {
+      } else if (optionStep === 5) {
         setStatusList(dataCollection[1].codeStatus);
         setStatusModel("En vitrine");
         setCheckValid(true);
       }
 
       setErrorMessage("");
-
+      console.log("NEXT STEP ", season);
       nextStep();
     } else {
       setErrorMessage("ERREUR DE SAISIE");
@@ -72,6 +82,7 @@ const CreateModelInput = ({
   const selectSeason = (e) => {
     setSeason(e.target.value);
     setDataSeason(fullDatabase.find((e) => e.season === season));
+    console.log("SEASON: ", dataSeason);
     setCheckValid(true);
   };
 
@@ -97,9 +108,27 @@ const CreateModelInput = ({
     const racesSelect = document.getElementById("racesChoice");
     const raceSelected = racesSelect.options[racesSelect.selectedIndex].value;
     setRace(raceSelected);
+    const raceResult = racesList.find((a) => a.race === raceSelected);
+    console.log("RaceResult: ", raceResult.pole[0].time, " / ", driver);
+    if (raceResult.pole[0].driver === driver) {
+      setQpos("Pole Position");
+      setQtime(raceResult.pole[0].time);
+    } else {
+      setQpos("No result");
+      setQtime("No time");
+    }
+
+    if (raceResult.winner[0].driver === driver) {
+      setRpos("Vainqueur");
+      setRtime(raceResult.winner[0].time);
+    }
+
+    if (raceResult.bestLap[0].driver === driver) {
+      setBLpos("Premier");
+      setBLtime(raceResult.bestLap[0].time);
+    }
     setCheckValid(true);
   };
-
   const selectManufacturersHandle = () => {
     const manufacturersSelect = document.getElementById("manufacturersChoice");
     const manufacturerSelected =
@@ -194,7 +223,7 @@ const CreateModelInput = ({
           ""
         )}
 
-        {optionStep === 4 ? (
+        {optionStep === 5 ? (
           <>
             <h3>Sélectionner le fabricant</h3>
             <select
@@ -219,7 +248,7 @@ const CreateModelInput = ({
           ""
         )}
 
-        {optionStep === 5 ? (
+        {optionStep === 6 ? (
           <>
             <h3>Sélectionner le status</h3>
             <select
@@ -238,20 +267,84 @@ const CreateModelInput = ({
           ""
         )}
 
-          {optionStep < 6 ? (
-            <div
-          className={checkValid ? "validButton" : "noValidButton"}
-          onClick={validButtonHandle}
-        >
-          VALIDER
-        </div>
-          ):(<div>
+        {optionStep === 4 ? (
+          <>
+            <h3>Entrez les résultats</h3>
+            <label htmlFor="qpos">Position en Qualification</label>
+            <input
+              type="text"
+              name="qpos"
+              id="qpos"
+              value={qpos}
+              onChange={(e) => setQpos(e.target.value)}
+            />
+
+            <label htmlFor="qtime">Temps en Qualification</label>
+            <input
+              type="text"
+              name="qtime"
+              id="qtime"
+              value={qtime}
+              onChange={(e) => setQtime(e.target.value)}
+            />
+
+            <label htmlFor="rpos">Position en Course</label>
+            <input
+              type="text"
+              name="rpos"
+              id="rpos"
+              value={rpos}
+              onChange={(e) => setRpos(e.target.value)}
+            />
+
+            <label htmlFor="rtime">Temps en Course</label>
+            <input
+              type="text"
+              name="rtime"
+              id="rtime"
+              value={rtime}
+              onChange={(e) => setRtime(e.target.value)}
+            />
+
+            <label htmlFor="blpos">Position en Meilleur Tour</label>
+            <input
+              type="text"
+              name="blpos"
+              id="blpos"
+              value={blpos}
+              onChange={(e) => setBLpos(e.target.value)}
+            />
+
+            <label htmlFor="bltime">Temps du Meilleur tour</label>
+            <input
+              type="text"
+              name="bltime"
+              id="bltime"
+              value={bltime}
+              onChange={(e) => setBLtime(e.target.value)}
+            />
+          </>
+        ) : (
+          ""
+        )}
+
+        {optionStep < 7 ? (
+          <div
+            className={checkValid ? "validButton" : "noValidButton"}
+            onClick={validButtonHandle}
+          >
+            VALIDER
+          </div>
+        ) : (
+          <div>
             <h3>Enregistrer le modèle</h3>
-            <div className="validButton" onClick={() => setSaveTheModel(true) } >Save the Model</div>
-          
-          </div>)}
-        
-        <div>{errorMessage}</div>
+            <div className="validButton" onClick={() => setSaveTheModel(true)}>
+              Save the Model
+            </div>
+          </div>
+        )}
+
+        <div className="messageError">{errorMessage}</div>
       </div>
     </>
   );

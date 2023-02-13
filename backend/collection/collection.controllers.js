@@ -52,6 +52,55 @@ exports.getBySeason = (req,res) => {
 
 //
 exports.getByTeam = (req,res) => {};
+
+//
 exports.getBydriver = (req,res) => {};
-exports.updateCar = (req,res) => {};
+
+exports.updateCar = (req, res) => {
+  (async () => {
+    try {
+      await carsModel.update(
+        {
+          manufacturer: req.body.manufacturer,
+          reference: req.body.reference,
+          status: req.body.status
+        }, {
+          where: {
+            model_id: req.params.id
+          }
+        }
+      )
+    } catch (error) {
+      return res.status(404).json({message: "NON TROUVE"}, error)
+    }
+  })();
+};
+
+//
+exports.updateResultCar = (req,res) => {
+  
+  (async () => {
+    try {
+      await carsModel.update(
+        {
+          qualificationPosition: req.body.qualificationPosition,
+          qualificationTime: req.body.qualificationTime,
+          racePosition: req.body.racePosition,
+          raceTime: req.body.raceTime,
+          bestLapPosition: req.body.bestLapPosition,
+          bestLapTime: req.body.bestLapTime
+      }, {
+        where: {
+          model_id: req.params.id
+        }
+      }
+      );
+      return res.status(201).json({message: "BDD MISE A JOUR !"});
+    }catch (error) {
+      return res.status(404).json({message: "NON TROUVE"}, error)
+    }
+  })();
+};
+
+//
 exports.deleteCar = (req,res) => {};

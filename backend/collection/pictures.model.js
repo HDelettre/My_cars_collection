@@ -2,7 +2,7 @@ const {Sequelize, DataTypes} = require('sequelize');
 
 const sequelize = require('../config/databaseAccess');
 
-const model_Pictures = sequelize.define('Model_Pictures', {
+const Model_Pictures = sequelize.define('Model_Pictures', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement:true,
@@ -19,4 +19,4 @@ const model_Pictures = sequelize.define('Model_Pictures', {
   }
 });
 
-module.exports = model_Pictures;
+module.exports = Model_Pictures;

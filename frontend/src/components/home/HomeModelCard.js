@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 import modelPictDefault from "../../assets/modelPictDefault.jpg";
@@ -8,11 +8,11 @@ const HomeModelCard = ({ data }) => {
   const [imageValid, setImageValid] = useState(false);
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (data) {
       async function fetchPictures() {
-        const reponse = await fetch (`${process.env.REACT_APP_API_CARS}/pict/${data.model_id}`, {
+        const reponse = await fetch (`${process.env.REACT_APP_API_PICT}/${data.model_id}`, {
           method: 'GET',    
         });
         if (reponse.ok) {
@@ -26,7 +26,7 @@ const HomeModelCard = ({ data }) => {
       if (!imageName) fetchPictures();
     }
   }, []);
-
+  
   const modelCarsHandle = (e) => {
     navigate(`/modelcars/${e.target.id}`);
   };
@@ -37,7 +37,7 @@ const HomeModelCard = ({ data }) => {
         {imageValid ? (
           <img src={`${process.env.REACT_APP_PICTURES}/modelcars/${imageName}` } id={data.model_id} />
         ):(
-          <img src={modelPictDefault} alt="" />
+          <img src={modelPictDefault} alt="" id={data.model_id}  />
         )}
           
         <p>

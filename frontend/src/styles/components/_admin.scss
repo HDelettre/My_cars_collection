@@ -3,7 +3,7 @@
   width: 80%;
   justify-content: center;
   margin-top: $margin_l;
-  height: 350px;
+  height: 500px;
 
   &_input {
     width: 25%;
@@ -27,6 +27,22 @@
     line-height: 2em;
     border-right: 1px solid black;
     border-left: 1px solid black;
+
+    &--group {
+      width: 95%;
+      display: flex;
+      align-items: center;
+
+      &--left {
+        width:40%
+      }
+
+      &--right {
+        width: 60%;
+        text-align: center;
+        background-color: $colors_fourth;
+      }
+    }
   }
 
   &_picture {

@@ -41,7 +41,25 @@ const carsModel = sequelize.define("carsModel", {
   status: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
+  },
+  qualificationPosition: {
+    type: DataTypes.STRING,
+  },
+  qualificationTime: {
+    type: DataTypes.STRING,
+  },
+  racePosition: {
+    type: DataTypes.STRING,
+  },
+  raceTime: {
+    type: DataTypes.STRING,
+  },
+  bestLapPosition: {
+    type: DataTypes.STRING,
+  },
+  bestLapTime: {
+    type: DataTypes.STRING,
+  },
 });
 
 module.exports = carsModel;

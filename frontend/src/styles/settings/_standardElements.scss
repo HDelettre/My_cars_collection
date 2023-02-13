@@ -1,5 +1,8 @@
 .titleBloc {
-  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
   align-self: flex-start;
   border-bottom: 4px solid $colors_third;
   border-left: 4px solid $colors_third;
@@ -7,6 +10,10 @@
   padding: $margin_s;
   margin: $margin_l;
   font-size: $font_xl;
+
+  img {
+    height: 50px;
+  }
 }
 
 .subtitleBloc {
@@ -24,7 +31,7 @@
 
 .navButton {
   width: 120px;
-  height: 30px;
+  min-height: 30px;
   cursor: pointer;
   text-align: center;
   padding: $margin_s;
@@ -32,7 +39,7 @@
   box-sizing: border-box;
   position: relative;
   font-weight: 500;
-  
+
   &:hover {
     &::after {
       content: "";
@@ -41,7 +48,7 @@
       background-color: orange;
       position: absolute;
       left: 30px;
-      top:27px;
+      top: 27px;
     }
   }
 }
@@ -49,13 +56,19 @@
 .navicon {
   font-size: $font_xl;
   cursor: pointer;
+  margin: 0 $margin_xs;
 }
 
-.center  {
+.redColor {
+  color: $colors_third;
+}
+
+.center {
   align-items: center;
 }
 
-.validButton, .noValidButton {
+.validButton,
+.noValidButton {
   cursor: pointer;
   background-color: $colors_second;
   color: $colors_white;
@@ -77,4 +90,21 @@
 .messageError {
   color: $colors_third;
   font-size: $font_xl;
+}
+
+.messageInfo {
+  font-size: $font_l;
+  margin-top: $margin_m;
+}
+
+.userConnected {
+  width: 90%;
+  margin-left: $margin_xxxl;
+}
+
+.verticalLine {
+  width: 3px;
+  margin: $margin_xs;
+  background-color: $colors_second;
+ min-height: 200px;
 }

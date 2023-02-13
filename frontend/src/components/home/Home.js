@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 // IMPORT COMPONENTS
 import TitleBloc from "../stdElements/TitleBloc";
@@ -9,22 +10,31 @@ import Spinloader from "../stdElements/Spinloader";
 // IMPORT DATA
 import dataSection from "../../bdd/data.home";
 import HomeModelCard from "./HomeModelCard";
+import UserConnected from "../stdElements/UserConnected";
+
+// IMPORT REDUCERS
+import { GET_ALL_CARS } from "../../redux/carsSlice";
 
 const Home = () => {
   const [threeEnd, setThreeEnd] = useState("");
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     (async () => {
       const reponse = await fetch(`${process.env.REACT_APP_API_CARS}`, {
-        method: "GET",
+        method: "GET"
       });
       const reponseJSON = await reponse.json();
+      dispatch(GET_ALL_CARS(reponseJSON));
       setThreeEnd(reponseJSON.slice(-3));
     })();
   }, [setThreeEnd]);
 
   return (
     <>
+      <UserConnected />
+
       <div className="navbar">
         <LoginButton />
       </div>
@@ -48,7 +58,7 @@ const Home = () => {
             </div>
           </>
         ) : (
-          <Spinloader />
+          ""
         )}
       </div>
     </>

@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 // IMPORT COMPONENTS
 import Spinloader from "../stdElements/Spinloader";
 import HomeButton from "../boutons/HomeButton";
 import TitleBloc from "../stdElements/TitleBloc";
 import TeamsCards from "./TeamsCards";
+import HomeModelCard from "../home/HomeModelCard";
 
 const TeamsContainer = () => {
   const [loading, setLoading] = useState(false);
   const [teamSelect, setTeamSelect] = useState("");
   const [teamList, setTeamList] = useState();
+  const [teamCars, setTeamCars] = useState();
+
+  const allCarsCollection = useSelector((state) => state.cars.data);
 
   useEffect(() => {
     async function fetchTeam() {
       try {
-        const reponse = await fetch(`${process.env.REACT_APP_API_CARS}`, {
-          method: "GET",
-        });
-        const reponseJSON = await reponse.json();
-        console.log("REPONSE FETCH TEAM: ", reponseJSON);
         let checkTeamList = [];
-        for (let i = 0; i < reponseJSON.length; i++) {
-          if (!checkTeamList.includes(reponseJSON[i].team)) {
-            checkTeamList.push(reponseJSON[i].team);
+        for (let i = 0; i < allCarsCollection.length; i++) {
+          if (!checkTeamList.includes(allCarsCollection[i].team)) {
+            checkTeamList.push(allCarsCollection[i].team);
           }
         }
         setTeamList(checkTeamList);
@@ -31,8 +31,18 @@ const TeamsContainer = () => {
         console.log("ERROR FETCH TEAM: ", error);
       }
     }
-    fetchTeam();
-  }, []);
+    if (!teamSelect)
+    {fetchTeam()};
+  }, [allCarsCollection]);
+
+  useEffect(() => {
+   if (teamSelect) {
+    setLoading(false);
+    setTeamCars(allCarsCollection.filter((e) => e.team === teamSelect));
+    console.log("TEAM CARS: ", teamCars);
+    setLoading(true);
+   }
+  }, [teamSelect, teamCars]);
 
   return (
     <>
@@ -53,6 +63,14 @@ const TeamsContainer = () => {
             {teamSelect ? (
               <>
               <TitleBloc title={teamSelect} />
+              { teamCars ? (
+                <div className="modelcard">
+                {teamCars.map((data) => (
+                  <HomeModelCard data={data} />
+                ))}
+              </div>
+              ) : (<Spinloader />)}
+              
               </>
             ) : (
               <>

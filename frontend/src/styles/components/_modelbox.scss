@@ -1,0 +1,96 @@
+.modelBox {
+  width:90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_card {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    textarea {
+      height: 20px;
+      width: 75%;
+      padding-left: $margin_l ;
+      border: none;
+      color:$colors_third;
+      background-color: $colors_fourth;
+      display: inline-block;
+      vertical-align: middle;
+
+      &:active {
+        border: none;
+      }
+    }
+
+    select {
+      width: 75%;
+      padding-left: $margin_l;
+      color:$colors_third;
+      background-color: $colors_fourth;
+    }
+
+    &--data {
+      width: 80%;
+      padding-left: $margin_l ;
+
+      sup {
+        font-size: $font_s;
+      }
+    }
+
+    &--track {
+      width: 40%;
+      margin: $margin_s;
+
+      img {
+        width: 90%;
+      }
+    }
+
+    &--line{
+      width: 95%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h4 {
+        margin: $margin_xs;
+        width: 25%;
+      }
+
+      img {
+        height: $font_m;
+        margin-left: $margin_l;
+      }
+    }
+
+    &--group {
+      width: 100%;
+      display: flex;
+    }
+
+    &--half {
+      width: 50%;
+      display: flex;
+    flex-direction: column;
+    }
+  }
+}
+
+.gallery {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  &_photo {
+    width: 30%;
+
+    img {
+      width: 90%;
+    }
+  }
+}
