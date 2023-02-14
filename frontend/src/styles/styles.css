@@ -564,4 +564,14 @@ body {
   width: 90%;
   display: flex;
   justify-content: space-between;
+}
+.gallery_box--bar---icon {
+  position: absolute;
+}
+.gallery_box--bar input {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  left: 5px;
+  opacity: 0;
 }/*# sourceMappingURL=styles.css.map */

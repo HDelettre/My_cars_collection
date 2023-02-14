@@ -12,7 +12,7 @@ const picturesCtrl = require("./pictures.controllers");
 router.post('/', multer, picturesCtrl.savePicture);
 router.get("/", picturesCtrl.getAllPictures);
 router.get('/:id', picturesCtrl.getOnePicture);
-router.patch("/:id", picturesCtrl.updatePicture);
+router.patch("/:id",multer, picturesCtrl.updatePicture);
 router.delete("/:id", picturesCtrl.deletePicture);
 
 //

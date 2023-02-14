@@ -16,6 +16,7 @@ const ModelsCarsPicture = ({ modelId, modifyPicture, setModifyPicture }) => {
         setFullPicture(
           reponseJSON.filter((e) => e.model_id === parseInt(modelId.id))
         );
+        setModifyPicture(false);
       } catch (error) {
         console.log("FETCH MODEL PICTURE: ", error);
       }
@@ -26,16 +27,14 @@ const ModelsCarsPicture = ({ modelId, modifyPicture, setModifyPicture }) => {
   const deletePicture = (e) => {
     if (window.confirm("Voulez-vous vraiment effacer l'image ?")) {
       // suppression image BDD
-      console.log("DELETE PICTURE ID: ", e.target.id);
       const idDeleted = e.target.id;
-      
+
       (async () => {
         try {
           const delPicture = await fetch(
             `${process.env.REACT_APP_API_PICT}/${idDeleted}`,
             {
               method: "DELETE",
-             
             }
           );
           if (delPicture.ok) {
@@ -49,9 +48,35 @@ const ModelsCarsPicture = ({ modelId, modifyPicture, setModifyPicture }) => {
     }
   };
 
-  const changePicture = () => {};
+  const changePicture = (e) => {
+    const idChanged = e.target.id
+    console.log("ID CHANGED: ", idChanged, " / ", modelId.id)
 
-  console.log("FULL PICTURE: ", fullPicture);
+    const newFile = e.target.files[0];
+    console.log("NEW FILE: ", newFile);
+
+    const bodyRequest = new FormData();
+    bodyRequest.append("model_id", modelId.id);
+    bodyRequest.append("model_picture", newFile);
+
+    (async () => {
+      try {
+        const changePicture = await fetch(
+          `${process.env.REACT_APP_API_PICT}/${idChanged}`,
+          {
+            method: "PATCH",
+            body: bodyRequest
+          }
+        );
+        if (changePicture.ok) {
+          console.log("L'image a été changée dans la BdD !");
+          setModifyPicture(true);
+        }
+      } catch (error) {
+        console.log("Erreur durant le changement d'image !");
+      }
+    })();
+  };
 
   return fullPicture ? (
     <>
@@ -65,10 +90,9 @@ const ModelsCarsPicture = ({ modelId, modifyPicture, setModifyPicture }) => {
           </div>
           <div className="gallery_box--bar">
             <div
-              className="fa-solid fa-camera smallicon"
-              onClick={changePicture}
-              title="Change Picture"
+              className="fa-solid fa-camera smallicon gallery_box--bar---icon"
             ></div>
+            <input type="file" name="model_picture" title="Change Picture" onChange={changePicture} id={source.id}/>
             <div
               className="fa-solid fa-trash-can smallicon redColor"
               onClick={deletePicture}
