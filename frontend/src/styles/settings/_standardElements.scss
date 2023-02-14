@@ -53,8 +53,33 @@
   }
 }
 
+.navBarPicture {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &_icon {
+    font-size: $font_icon;
+    position: absolute;
+  }
+
+  input {
+    width: $font_icon;
+    position: relative;
+    left:0px;
+    opacity: 0;
+  }
+}
+
 .navicon {
   font-size: $font_xl;
+  cursor: pointer;
+  margin: 0 $margin_xs;
+}
+
+.smallicon {
+  font-size: $font_l;
   cursor: pointer;
   margin: 0 $margin_xs;
 }

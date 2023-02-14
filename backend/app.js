@@ -15,7 +15,7 @@ const sequelize = require("./config/databaseAccess");
 // Synchronization of models
 require("./collection/collection.models");
 require("./collection/pictures.model");
-sequelize.sync({ force: true });
+sequelize.sync({ alter: true });
 
 // HELMET
 const helmet = require("helmet");

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // IMPORT COMPONENTS
 import TitleBloc from "../stdElements/TitleBloc";
@@ -34,7 +34,7 @@ const CreateModelForm = () => {
   const [messageInfo, setMessageInfo] = useState("");
   const [messageError, setMessageError] = useState("");
 
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const CreateModelForm = () => {
         racePosition: rpos,
         raceTime: rtime,
         bestLapPosition: blpos,
-        bestLapTime: bltime
+        bestLapTime: bltime,
       };
 
       const fetchCreateModel = async (dataModel) => {
@@ -81,25 +81,22 @@ const CreateModelForm = () => {
 
               (async () => {
                 try {
-                  const savingPicture = await (fetch(
+                  const savingPicture = await fetch(
                     `${process.env.REACT_APP_API_PICT}`,
                     {
                       method: "POST",
-                      body: newPicture
+                      body: newPicture,
                     }
-                  ));
+                  );
                   if (savingPicture.ok) {
-                    setMessageInfo("L'image a été enregistrée dans la BdD !")
+                    setMessageInfo("L'image a été enregistrée dans la BdD !");
                   }
                 } catch (error) {
                   setMessageError("Erreur durant la sauvegarde de l'image !");
                 }
               })();
-      };
-      navigate(`/modelcars/${reponseJSON.newCars.model_id}`);
-
-
-
+            }
+            navigate(`/modelcars/${reponseJSON.newCars.model_id}`);
           }
         } catch (error) {
           console.log("ERROR: ", error);
@@ -108,7 +105,6 @@ const CreateModelForm = () => {
         }
       };
       fetchCreateModel(dataModel);
-
     }
   }, [saveTheModel, setSaveTheModel]);
 
@@ -159,62 +155,61 @@ const CreateModelForm = () => {
         <div className="newmodel_result">
           <h3>Informations Nouveau Modèle</h3>
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Constructeur:</div>
+            <div className="newmodel_result--group--left">Constructeur:</div>
             <div className="newmodel_result--group--right">{team}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Modèle:</div>
+            <div className="newmodel_result--group--left">Modèle:</div>
             <div className="newmodel_result--group--right">{model}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Année:</div>
+            <div className="newmodel_result--group--left">Année:</div>
             <div className="newmodel_result--group--right">{season}</div>
           </div>
-          
+
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Pilote:</div>
+            <div className="newmodel_result--group--left">Pilote:</div>
             <div className="newmodel_result--group--right">{driver}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Grand-Prix:</div>
+            <div className="newmodel_result--group--left">Grand-Prix:</div>
             <div className="newmodel_result--group--right">{race}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Qualifications:</div>
+            <div className="newmodel_result--group--left">Qualifications:</div>
             <div className="newmodel_result--group--right">{`${qpos} / ${qtime}`}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Résultat:</div>
+            <div className="newmodel_result--group--left">Résultat:</div>
             <div className="newmodel_result--group--right">{`${rpos} / ${rtime}`}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Meilleur tour:</div>
+            <div className="newmodel_result--group--left">Meilleur tour:</div>
             <div className="newmodel_result--group--right">{`${blpos} / ${bltime}`}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Fabricant:</div>
+            <div className="newmodel_result--group--left">Fabricant:</div>
             <div className="newmodel_result--group--right">{manufacturer}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Référence:</div>
+            <div className="newmodel_result--group--left">Référence:</div>
             <div className="newmodel_result--group--right">{reference}</div>
           </div>
 
           <div className="newmodel_result--group">
-            <div className="newmodel_result--group--left" >Status:</div>
+            <div className="newmodel_result--group--left">Status:</div>
             <div className="newmodel_result--group--right">{statusModel}</div>
           </div>
 
           <div></div>
-
         </div>
 
         <div className="newmodel_picture">
@@ -243,10 +238,9 @@ const CreateModelForm = () => {
 
           <img src={modelPicture} alt="" />
         </div>
-
       </div>
-        <div className="messageError">{messageError}</div>
-        <div className="messageInfo">{messageInfo}</div>
+      <div className="messageError">{messageError}</div>
+      <div className="messageInfo">{messageInfo}</div>
     </>
   );
 };

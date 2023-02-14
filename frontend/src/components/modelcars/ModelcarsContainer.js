@@ -27,7 +27,10 @@ const ModelcarsContainer = () => {
   const [carTechnical, setCarTechnical] = useState();
   const [carPicture, setCarPicture] = useState("");
 
+  const [modifyPicture, setModifyPicture] = useState(false);
+
   useEffect(() => {
+    
     const carsOfYears = modelsData.find((e) => e.season == carData.year);
 
     const carsCompil = carsOfYears.cars;
@@ -35,7 +38,8 @@ const ModelcarsContainer = () => {
     const carResult = carsCompil.find((e) => e.model === carData.model);
     setCarTechnical(carResult);
 
-    setCarPicture(`modelPictures/${carResult.picture}`)
+    setCarPicture(`modelPictures/${carResult.picture}`);
+
   }, []);
 
   return (
@@ -43,7 +47,6 @@ const ModelcarsContainer = () => {
       <UserConnected />
 
       <div className="navbar">
-        <AddModelPicture />
         <DeleteModel />
         <HomeButton />
       </div>
@@ -113,8 +116,9 @@ const ModelcarsContainer = () => {
 
       <div className="fullContainer flexCol">
         <TitleBloc title={"Gallerie Photos"} />
-        <div className="gallery_photo">
-          <ModelsCarsPicture modelId={modelId} />
+        <AddModelPicture modelId={modelId} setModifyPicture={setModifyPicture} />
+        <div className="gallery">
+          <ModelsCarsPicture modelId={modelId} modifyPicture={modifyPicture} setModifyPicture={setModifyPicture} />
         </div>
       </div>
     </>
