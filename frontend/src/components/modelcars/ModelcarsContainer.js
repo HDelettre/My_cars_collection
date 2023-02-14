@@ -36,9 +36,13 @@ const ModelcarsContainer = () => {
     const carsCompil = carsOfYears.cars;
 
     const carResult = carsCompil.find((e) => e.model === carData.model);
-    setCarTechnical(carResult);
+    console.log("CAR RESULT: ", carResult)
+    if (carResult) {
 
-    setCarPicture(`modelPictures/${carResult.picture}`);
+      setCarTechnical(carResult);
+  
+      setCarPicture(`modelPictures/${carResult.picture}`);
+    };
 
   }, []);
 
@@ -47,7 +51,7 @@ const ModelcarsContainer = () => {
       <UserConnected />
 
       <div className="navbar">
-        <DeleteModel />
+        <DeleteModel carData={carData} />
         <HomeButton />
       </div>
 

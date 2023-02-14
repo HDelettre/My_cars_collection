@@ -1,6 +1,6 @@
 const Model_Pictures = require("./pictures.model");
 
-const fs = require('fs');
+const fs = require("fs");
 
 //
 // PICTURE SAVE
@@ -53,7 +53,7 @@ exports.getOnePicture = (req, res) => {
 
 //
 exports.updatePicture = (req, res) => {
-  (async  () => {
+  (async () => {
     //1- La nouvelle image a été sauvegardée par Multer
     //2- je récupère le nom du nouveau fichier
     const pictureFile = JSON.parse(JSON.stringify(req.files.model_picture))[0];
@@ -61,8 +61,8 @@ exports.updatePicture = (req, res) => {
     //3- je récupére le nom de l'ancienne photo
     try {
       const reponse = await Model_Pictures.findOne({
-        where: { id: req.params.id}
-      })
+        where: { id: req.params.id },
+      });
 
       const fileToBeDeleted = reponse.pictureName;
       console.log("FILE TO BE DELETED: ", fileToBeDeleted);
@@ -70,26 +70,30 @@ exports.updatePicture = (req, res) => {
       //4- je supprime l'ancienne photo du dossier
 
       fs.unlink(`pictures/modelCars/${fileToBeDeleted}`, (err) => {
-        if (err) { throw err;}
-        console.log("DELETE FILE SUCCESSFULLY")
-      })
+        if (err) {
+          throw err;
+        }
+        console.log("DELETE FILE SUCCESSFULLY");
+      });
 
       //5- je mets à jour la BDD
       try {
-        await Model_Pictures.update({
-          pictureName: pictureFile.filename
-        }, {
-          where: {
-            id: req.params.id
+        await Model_Pictures.update(
+          {
+            pictureName: pictureFile.filename,
+          },
+          {
+            where: {
+              id: req.params.id,
+            },
           }
-        });
+        );
       } catch (error) {
-        return res.status(404).send("OLD PICTURE NOT FOUND IN BDD")
+        return res.status(404).send("OLD PICTURE NOT FOUND IN BDD");
       }
       await reponse.save();
 
       return res.status(200).send("LA PHOTO A ETE CHANGEE");
-
     } catch (error) {
       return res.status(404).send("ERROR UPDATE PICTURE");
     }
@@ -101,8 +105,8 @@ exports.deletePicture = (req, res) => {
   (async () => {
     try {
       const reponse = await Model_Pictures.findOne({
-        where: { id: req.params.id}
-      })
+        where: { id: req.params.id },
+      });
       // const reponseJSON = await reponse.json();
       const fileToBeDeleted = reponse.pictureName;
       console.log("FILE TO BE DELETED: ", fileToBeDeleted);
@@ -110,14 +114,13 @@ exports.deletePicture = (req, res) => {
       await reponse.destroy();
 
       fs.unlink(`pictures/modelCars/${fileToBeDeleted}`, (err) => {
-        if (err) { throw err;}
-        console.log("DELETE FILE SUCCESSFULLY")
-      })
+        if (err) {
+          throw err;
+        }
+        console.log("DELETE FILE SUCCESSFULLY");
+      });
 
-      //fs.unlink(`C:/Users/rv/Documents/OPENCLASSROOM/PROJETS_WEB/MY_COLLECTION/backend/pictures/modelCars/${fileToBeDeleted}`);
-
-      return res.status(200).json({ message: "Fichier supprimé"})
-
+      return res.status(200).json({ message: "Fichier supprimé" });
     } catch (error) {
       return res.status(404).send("NOT FOUND");
     }

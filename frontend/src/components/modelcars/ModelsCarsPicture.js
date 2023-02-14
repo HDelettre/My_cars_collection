@@ -3,6 +3,7 @@ import Spinloader from "../stdElements/Spinloader";
 
 const ModelsCarsPicture = ({ modelId, modifyPicture, setModifyPicture }) => {
   const [fullPicture, setFullPicture] = useState("");
+  const [validPicture, setValidPicture] = useState(false);
 
   useEffect(() => {
     async function fetchModelPicture() {
@@ -11,12 +12,20 @@ const ModelsCarsPicture = ({ modelId, modifyPicture, setModifyPicture }) => {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
-        const reponseJSON = await reponse.json();
+        if (reponse.ok) {
+          const reponseJSON = await reponse.json(); 
+          
+          const reponseFilter = reponseJSON.filter((e) => e.model_id === parseInt(modelId.id));
+          console.log("REPoNSEFILTER: ",reponseFilter)
 
-        setFullPicture(
-          reponseJSON.filter((e) => e.model_id === parseInt(modelId.id))
-        );
-        setModifyPicture(false);
+          if (reponseFilter.length > 0 ) {
+            setFullPicture(
+              reponseJSON.filter((e) => e.model_id === parseInt(modelId.id))
+            );
+            setValidPicture(true);
+          }
+          setModifyPicture(false);
+        }
       } catch (error) {
         console.log("FETCH MODEL PICTURE: ", error);
       }
@@ -78,7 +87,9 @@ const ModelsCarsPicture = ({ modelId, modifyPicture, setModifyPicture }) => {
     })();
   };
 
-  return fullPicture ? (
+  console.log("VALID PICTURE: ", validPicture)
+
+  return validPicture ? (
     <>
       {fullPicture.map((source) => (
         <div className="gallery_box">

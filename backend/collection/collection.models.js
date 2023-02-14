@@ -2,6 +2,8 @@ const { Sequelize, DataTypes, INTEGER } = require("sequelize");
 
 const sequelize = require("../config/databaseAccess");
 
+const Model_Pictures = require ("./pictures.model");
+
 const carsModel = sequelize.define("carsModel", {
   model_id: {
     type: DataTypes.INTEGER(4).ZEROFILL,
@@ -63,3 +65,5 @@ const carsModel = sequelize.define("carsModel", {
 });
 
 module.exports = carsModel;
+
+carsModel.hasMany(Model_Pictures, {foreignKey: "model_id", onDelete: "CASCADE"});
