@@ -34,7 +34,8 @@
   width: 90%;
   display: flex;
   justify-content: space-evenly;
-
+  flex-wrap: wrap;
+  
   &_box {
     width: 30%;
     display: flex;

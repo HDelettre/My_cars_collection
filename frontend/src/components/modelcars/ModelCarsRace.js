@@ -9,6 +9,8 @@ import Spinloader from "../stdElements/Spinloader";
 const ModelCarsRace = ({ carData }) => {
   const [raceData, setRaceData] = useState("");
 
+  console.log("FULLDATABASE: ", fullDatabase)
+
   useEffect(() => {
     const seasonData = fullDatabase.find((e) => e.season == carData.year);
     const calendarData = seasonData.calendar;

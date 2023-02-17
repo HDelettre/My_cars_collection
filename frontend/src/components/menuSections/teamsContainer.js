@@ -33,7 +33,7 @@ const TeamsContainer = () => {
     }
     if (!teamSelect)
     {fetchTeam()};
-  }, [allCarsCollection]);
+  }, []);
 
   useEffect(() => {
    if (teamSelect) {
@@ -42,7 +42,7 @@ const TeamsContainer = () => {
     console.log("TEAM CARS: ", teamCars);
     setLoading(true);
    }
-  }, [teamSelect, teamCars]);
+  }, [teamSelect]);
 
   return (
     <>

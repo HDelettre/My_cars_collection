@@ -39,7 +39,7 @@ const SeasonsContainer = () => {
         <HomeButton />
         {seasonSelect && !messageError ? (
         <div className="navButton" onClick={() => setSeasonSelect()}>
-        <i class="fa-solid fa-rotate-left"></i>
+        <i className="fa-solid fa-rotate-left"></i>
         </div>) : ("")}
       </div>
 
@@ -50,7 +50,7 @@ const SeasonsContainer = () => {
             {modelOfSeason ? (
               <div className="modelcard">
                 {modelOfSeason.map((data) => (
-                  <HomeModelCard data={data} />
+                  <HomeModelCard data={data} key={data.model_id} />
                 ))}
               </div>
             ) : (

@@ -7,6 +7,7 @@
 
 body {
   max-width: 1250px;
+  margin: auto;
 }
 
 #root {
@@ -212,17 +213,7 @@ body {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  -webkit-animation: custom-loading 1s linear infinite;
-          animation: custom-loading 1s linear infinite;
-}
-
-@-webkit-keyframes custom-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  animation: custom-loading 1s linear infinite;
 }
 
 @keyframes custom-loading {
@@ -315,6 +306,7 @@ body {
   width: 90%;
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .modelcard_box {
   width: 30%;
@@ -484,6 +476,16 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.modelBox_card--chpt {
+  width: 100%;
+  margin: 25px;
+  border: 3px solid #003580;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px 5px #579eff;
+  text-align: center;
+  padding: 20px;
+  line-height: 2em;
+}
 .modelBox_card textarea {
   height: 20px;
   width: 75%;
@@ -553,12 +555,23 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+.gallery_box--picture {
+  background-color: #eeeeee;
+  padding: 8px;
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
 }
 .gallery_box--picture img {
-  width: 90%;
-  height: 200px;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
 }
 .gallery_box--bar {
   width: 90%;
