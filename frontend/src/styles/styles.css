@@ -350,6 +350,64 @@ body {
   margin: 16px;
 }
 
+.newUser {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+.newUser_data {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.newUser_data--form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.newUser_data--bloc {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.newUser_data--bloc label {
+  width: 30%;
+  display: block;
+  text-align: right;
+}
+.newUser_data--bloc input {
+  width: 50%;
+  text-align: center;
+  padding: 5px;
+  margin: 14px;
+}
+.newUser_data--button {
+  width: 80px;
+  background-color: #579eff;
+  color: yellow;
+  text-align: center;
+  padding: 8px;
+  margin: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.newUser_data--button:hover {
+  background-color: #005fe6;
+}
+.newUser .buttonSelect {
+  background-color: #003580;
+}
+.newUser_avatar {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .newmodel {
   display: flex;
   width: 80%;

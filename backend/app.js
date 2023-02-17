@@ -9,12 +9,14 @@ require("dotenv").config({
 // PATH TO ROUTES
 const carsRoutes = require("./collection/collection.routes");
 const picturesRoutes = require("./collection/pictures.routes");
+const usersRoutes = require("./users/users_routes");
 
 // MYSQL / SEQUELIZE
 const sequelize = require("./config/databaseAccess");
 // Synchronization of models
 require("./collection/collection.models");
 require("./collection/pictures.model");
+require("./users/users.models");
 sequelize.sync({ alter: true });
 
 // HELMET
@@ -47,6 +49,7 @@ app.use(express.json());
 // ROUTES CALLING
 app.use("/api/cars", carsRoutes);
 app.use("/api/pict", picturesRoutes);
+app.use("/api/users", usersRoutes);
 
 // EXPORTS
 module.exports = app;

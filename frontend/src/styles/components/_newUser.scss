@@ -1,0 +1,66 @@
+.newUser {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: $margin_l;
+
+  &_data {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    &--bloc {
+      width: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      label {
+        width: 30%;
+        display: block;
+        text-align: right;
+      }
+  
+      input {
+        width: 50%;
+        text-align: center;
+        padding: $margin_xs;
+        margin: $margin_m;
+      }
+    }
+
+    &--button {
+      width: 80px;
+      background-color: $colors_second;
+      color:$colors_fifth;
+      text-align: center;
+      padding: $margin_s;
+      margin: $margin_m;
+      border-radius: $margin_s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten($colors_first, 20%) ;
+      }
+    }
+  }
+
+  .buttonSelect {
+    background-color: $colors_first ;
+  }
+
+  &_avatar {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
